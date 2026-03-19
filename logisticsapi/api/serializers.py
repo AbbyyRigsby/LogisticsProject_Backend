@@ -18,3 +18,8 @@ class LogisticsPathSerializer(serializers.Serializer):
     )
     # For showing the stop-by-stop list
     path_details = NodeDetailSerializer(many=True)
+
+class PortListSerializer(serializers.Serializer):
+    ports = serializers.ListField(
+        child=serializers.CharField()
+    )
