@@ -55,10 +55,16 @@ def graph_process():
 
     load_dotenv()
 
-    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    base_dir = os.path.dirname(os.path.abspath(__file__))
 
-    airports_csv = os.path.join(base_dir, os.getenv('AIR_DATASET'))
-    seaports_csv = os.path.join(base_dir, os.getenv('SEA_DATASET'))
+    air_dataset = os.getenv('AIR_DATASET')
+    sea_dataset = os.getenv('SEA_DATASET')
+
+    if not air_dataset or not sea_dataset:
+        raise ValueError("AIR_DATASET and SEA_DATASET environment variables must be set")
+
+    airports_csv = os.path.join(base_dir, air_dataset)
+    seaports_csv = os.path.join(base_dir, sea_dataset)
 
     airport_data = geodata_process(airports_csv, 'air')
     seaport_data = geodata_process(seaports_csv, 'sea')

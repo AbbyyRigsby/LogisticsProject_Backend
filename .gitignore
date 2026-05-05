@@ -1,4 +1,7 @@
-datasets/*.csv
+datasets/
+*.csv
+
+*.ps1
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -216,3 +219,5 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+/k8s/
+.vscode
