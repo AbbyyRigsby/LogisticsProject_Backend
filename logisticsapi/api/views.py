@@ -30,7 +30,10 @@ class ShortestPathView(APIView):
         end_point = request.data.get('end_point')
 
         if not start_point or not end_point:
-            return Response({"error": "Start and end points are required."})
+            return Response(
+                {"error": "Start and end points are required."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         try:
             result = shortest_path.find_shortest_path(graph, start_point, end_point)
